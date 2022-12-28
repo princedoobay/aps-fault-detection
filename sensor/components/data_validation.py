@@ -7,7 +7,7 @@ import os,sys
 import pandas as pd
 from sensor import utils
 import numpy as np
-#from sensor.config import TARGET_COLUMN
+from sensor.config import TARGET_COLUMN
 
 
 
@@ -31,7 +31,6 @@ class DataValidation:
     def drop_missing_values_columns(self,df:pd.DataFrame,report_key_name:str)->Optional[pd.DataFrame]:
         """
         This function will drop column which contains missing value more than specified threshold
-
         df: Accepts a pandas dataframe
         threshold: Percentage criteria to drop a column
         =====================================================================================
@@ -87,7 +86,7 @@ class DataValidation:
                 #Null hypothesis is that both column data drawn from same distrubtion
                 
                 logging.info(f"Hypothesis {base_column}: {base_data.dtype}, {current_data.dtype} ")
-                same_distribution = ks_2samp(base_data,current_data)
+                same_distribution =ks_2samp(base_data,current_data)
 
                 if same_distribution.pvalue>0.05:
                     #We are accepting null hypothesis
@@ -126,11 +125,11 @@ class DataValidation:
             logging.info(f"Drop null values colums from test df")
             test_df = self.drop_missing_values_columns(df=test_df,report_key_name="missing_values_within_test_dataset")
             
-            exclude_columns = ["class"]
+            exclude_columns = [TARGET_COLUMN]
             base_df = utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
             train_df = utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
             test_df = utils.convert_columns_float(df=test_df, exclude_columns=exclude_columns)
-            
+
 
             logging.info(f"Is all required columns present in train df")
             train_df_columns_status = self.is_required_columns_exists(base_df=base_df, current_df=train_df,report_key_name="missing_columns_within_train_dataset")
