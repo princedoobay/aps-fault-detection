@@ -60,7 +60,6 @@ main--> is your branch name
 
 To push your changes forcefully.
 ```
-
 git push origin main -f
 ```
 
