@@ -1,96 +1,51 @@
-# neurolab-mongo-python
+# Scania Air Pressure System Failure Prediction
 
-![image](https://user-images.githubusercontent.com/57321948/196933065-4b16c235-f3b9-4391-9cfe-4affcec87c35.png)
+This is an end-to-end machine learning project to predict failures in Scania's air pressure system using Python. The project includes data collection, preprocessing, exploratory data analysis, model building, selection, and deployment using Docker and AWS.
 
-### Step 1 - Install the requirements
+## Problem Statement
 
-```bash
-pip install -r requirements.txt
-```
+The air pressure system is a critical component in Scania's trucks. Failure of this system can lead to costly maintenance and downtime if it fails unexpectedly. The goal of this project is to build a machine learning model that can accurately predict failures and enable proactive maintenance, reducing downtime and minimizing maintenance costs.
 
-### Step 2 - Run main.py file
+## Data Collection
 
-```bash
-python main.py
-```
+The dataset used in this project was provided by Scania and includes 58,000 samples, with 171 features and a binary target variable indicating whether a failure occurred.
 
-### To download the Dataset
+## Data Preprocessing
 
-```bash
-wget https://raw.githubusercontent.com/avnyadav/sensor-fault-detection/main/aps_failure_training_set1.csv
-```
+The dataset had a large number of missing values, which required imputation. K-Nearest Neighbors imputation was used to fill in missing values. After preprocessing, exploratory data analysis was performed to gain insights into the data and visualize the relationship between features and the target variable.
 
-This is Changes made in neurolab
+## Model Building and Selection
 
-Git commands
+Several machine learning models were built and trained to predict failures. The models included logistic regression, decision trees, random forests, and gradient boosting. Cross-validation and hyperparameter tuning techniques were used to optimize model performance. Performance was evaluated using metrics such as accuracy, precision, recall, F1 score, and AUC-ROC. The best-performing model was selected, which was a gradient boosting classifier.
 
-If you are starting a project and you want to use git in your project
-```
-git init
-```
-Note: This is going to initalize git in your source code.
+## Deployment
 
+After selecting the best-performing model, it was deployed using Docker and AWS. The application was containerized using Docker, which allowed the application to be run on different environments. Amazon SageMaker was used to train the model and create an endpoint to serve model predictions. The use of AWS ensured that the application is scalable, reliable, and can handle large volumes of traffic.
 
-OR
+## Conclusion
 
-You can clone exiting github repo
-```
-git clone <github_url>
-```
-Note: Clone/ Downlaod github  repo in your system
+This project showcases proficiency in data preprocessing, exploratory data analysis, machine learning, model selection, and deployment using Docker and AWS. By predicting failures in Scania's air pressure system ahead of time, this solution enables proactive maintenance, reduces downtime, and minimizes maintenance costs for Scania. 
 
+## Requirements
 
-Add your changes made in file to git stagging are
-```
-git add file_name
-```
-Note: You can given file_name to add specific file or use "." to add everything to staging are
+- Python 3.x
+- Pandas
+- Numpy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Flask
+- Docker
 
+## Usage
 
-Create commits
-```
-git commit -m "message"
-```
+To use this project, follow these steps:
 
-```
-git push origin main
-```
-Note: origin--> contains url to your github repo
-main--> is your branch name 
+1. Clone the repository
+2. Install the required libraries using `pip install -r requirements.txt`
+3. Run the app using `python app.py`
+4. Access the app at `http://localhost:5000` 
 
-To push your changes forcefully.
-```
-git push origin main -f
-```
+## Credits
 
-
-To pull  changes from github repo
-```
-git pull origin main
-```
-Note: origin--> contains url to your github repo
-main--> is your branch name
-
-.env file has
-```
-MONGO_DB_URL="mongodb://localhost:27017"
-AWS_ACCESS_KEY_ID="aagswdiquyawvdiu"
-AWS_SECRET_ACCESS_KEY="sadoiuabnswodihabosdbn"
-```
-
-```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker ubuntu
-newgrp docker
-
-````
-```
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_REGION=
-AWS_ECR_LOGIN_URI=
-ECR_REPOSITORY_NAME=
-BUCKET_NAME=
-MONGO_DB_URL=
-```
+This project was completed as a part of the machine learning course on Ineuron, and the dataset was provided by Scania.
